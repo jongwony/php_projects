@@ -1,0 +1,24 @@
+@import "../components/normalize";
+body, html {
+    height: 100%;
+}
+div.container {
+    margin: 7% auto;
+    width: 1000px;
+    h2 {
+        margin: 0;
+        text-align: center;
+        color: #777;
+        font-size: 80px;
+        line-height: 120px;
+    }
+    div.reason-phrase {
+        text-align: center;
+        &:before {
+            content: 'Sorry, ';
+        }
+        color: #333;
+        font-size: 20px;
+        line-height: 30px;
+    }
+}

@@ -1,0 +1,26 @@
+{layout '../admin/layout.latte'}
+{block styles}
+<link rel="stylesheet" href="/static/admin/css/login.min.css" />
+{/block}
+{block body-attributes} class="hold-transition register-page"{/block}
+{block content}
+<div class="register-box">
+    <div class="register-logo">Festiv</div>
+    <div class="register-box-body">
+        <p class="login-box-msg">비밀번호 찾기</p>
+        <div class="alert alert-danger alert-dismissible" n:foreach="$errors as $error">
+            <h4><i class="icon fa fa-ban"></i> 경고!</h4>
+            <div>{$error}</div>
+        </div>
+        <form method="post">
+            <div class="form-group has-feedback">
+                <input type="email" name="email" n:attr="value => isset($values['email']) ? $values['email'] : null" class="form-control" placeholder="이메일" autofocus />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">이메일로 받기</button>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}

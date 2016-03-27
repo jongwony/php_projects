@@ -1,0 +1,39 @@
+{layout '../admin/layout.latte'}
+{block styles}
+<link rel="stylesheet" href="/static/admin/css/login.css" />
+{/block}
+{block body-attributes}class="hold-transition login-page"{/block}
+{block content}
+
+<div class="login-box">
+    <div class="login-logo">Festiv</div>
+    <div class="login-box-body">
+        <p class="login-box-msg">로그인</p>
+        <div class="alert alert-danger alert-dismissible" n:foreach="$errors as $error">
+            <h4><i class="icon fa fa-ban"></i> 경고!</h4>
+            <div>{$error}</div>
+        </div>
+        <div class="alert alert-success alert-dismissible" n:foreach="$successes as $success">
+            <h4><i class="icon fa fa-check"></i> 알림!</h4>
+            <div>{$success}</div>
+        </div>
+        <form method="post">
+            <input type="hidden" name="redirect" value="{$redirect}" />
+            <div class="form-group has-feedback">
+                <input type="email" name="email" n:attr="value => isset($values['email']) ? $values['email'] : null" class="form-control" placeholder="이메일" autofocus required />
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" name="password" class="form-control" placeholder="비밀번호" required />
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">로그인</button>
+            </div>
+        </form>
+
+        <a href="/auth/register" class="text-center">회원가입</a>
+        <a href="/auth/reset" class="text-center pull-right">비밀번호찾기</a>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,91 @@
+{layout '../../admin/skin.latte'}
+{block main}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>포스팅 관리</h1>
+        <div class="pull-right btn-group">
+            <a href="/admin/posts" class="btn btn-sm btn-default">목록</a>
+        </div>
+    </section>
+    <section class="content">
+
+        <div class="alert alert-danger alert-dismissible" n:foreach="$errors as $error">
+            <h4><i class="icon fa fa-ban"></i> 경고!</h4>
+            <div>{$error}</div>
+        </div>
+
+        <div class="row">
+            <form role="form" method="post" n:attr="action => isset($values['id']) ? '/admin/posts/' . $values['id'] : '/admin/posts'">
+                <input type="hidden" name="_method" value="put" n:if="isset($values['id'])" />
+                <div class="col-md-8">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{if isset($values['id'])}글 수정하기{else}글쓰기{/if}</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="PostInputTitle">제목</label>
+                                <input type="text" class="form-control" name="title" id="PostInputTitle" placeholder="제목" autofocus n:attr="value => isset($values['title']) ? $values['title'] : null" />
+                            </div>
+                            <div class="form-group">
+                                <label for="PostInputContents">본문</label>
+                                <textarea class="form-control" name="contents" id="PostInputContents" placeholder="본문..." rows="12">{isset($values['contents']) ? $values['contents'] : null}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">기타정보</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="PostInputUser">글쓴이</label>
+                                <select name="user_id" class="form-control" id="PostInputUser">
+                                    <option value="{$user['id']}">내가 쓴글</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="PostInputCategory">카테고리</label>
+                                <select name="category_id" class="form-control" id="PostInputCategory">
+                                    <option value="0" n:attr="selected => (!isset($values['category_id']) || $values['category_id'] === 0)">카테고리 없음</option>
+                                    <option n:foreach="$categories as $category" value="{$category['id']}" n:attr="selected => (isset($values['category_id']) && $values['category_id'] === $category['id'])">{$category['name']}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#DeletePost" n:if="isset($values['id'])">삭제</a>
+
+                            <button type="submit" class="btn btn-primary pull-right">{if isset($values['id'])}수정하기{else}글쓰기{/if}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<form method="post" n:if="isset($values['id'])">
+    <input type="hidden" name="_method" value="delete" />
+    <div class="modal modal-danger fade" id="DeletePost">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">포스팅 삭제</h4>
+                </div>
+                <div class="modal-body">
+                    <p>정말로 삭제하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">취소</button>
+                    <button type="submit" class="btn btn-outline">예, 삭제합니다.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{/block}

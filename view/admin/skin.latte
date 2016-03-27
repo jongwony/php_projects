@@ -1,0 +1,57 @@
+{layout '../admin/layout.latte'}
+{block styles}
+<link rel="stylesheet" href="/static/admin-lte/css/skins/skin-blue.min.css" />
+<link rel="stylesheet" href="/static/admin/css/layout.css" />
+{/block}
+{block body-attributes} class="hold-transition skin-blue sidebar-mini"{/block}
+{block content}
+<div class="wrapper">
+    <header class="main-header">
+        <a href="/admin" class="logo">Festiv</a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs">{$user['name']}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/auth/logout"><i class="fa fa-sign-out"></i>로그아웃</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li><a href="/admin/posts"><i class="fa fa-pencil-square-o"></i><span>포스팅관리</span></a></li>
+                <li><a href="/admin/categories"><i class="fa fa-sitemap"></i><span>카테고리 관리</span></a></li>
+                <li><a href="/admin/users"><i class="fa fa-users"></i><span>사용자 관리</span></a></li>
+
+                <!--<li class="header">플러그인</li>-->
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    {block main}{/block}
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <strong>Version</strong> {\Festiv\Foundation\Application::VERSION}
+        </div>
+        <strong>Copyright &copy; 2015-{date('Y')} Festiv. All rights reserved.</strong>
+    </footer>
+</div>
+{/block}
+
+{block scripts}
+<script src="/static/jquery/jquery.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/admin/js/layout.js"></script>
+{/block}

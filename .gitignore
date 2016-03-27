@@ -1,0 +1,15 @@
+.DS_Store
+.idea
+vendor
+composer.lock
+thumb.db
+
+/bower_components
+/node_modules
+
+/public/static
+/storage
+
+tests/_output/*
+
+/config.php

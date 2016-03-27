@@ -1,0 +1,13 @@
+{layout 'admin/layout.latte'}
+{block styles}
+<link rel="stylesheet" href="/static/publ/welcome.css" />
+{/block}
+
+{block content}
+<div class="welcome">
+    <h1>{$message}</h1>
+    <div>{$others}</div>
+
+    <div n:foreach="$articles as $article">{$article}</div>
+</div>
+{/block}

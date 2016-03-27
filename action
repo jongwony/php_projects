@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+use Festiv\Foundation\Application;
+use Festiv\Foundation\Kernels\ConsoleKernel;
+
+$basePath = realpath(__DIR__);
+
+require $basePath . "/vendor/autoload.php";
+
+$app = new Application(
+    new ConsoleKernel(require $basePath . '/app/commands.php'),
+    require $basePath . '/config.php'
+);
+$app->call(require $basePath . '/app/providers.php');
+$app->setAsGlobal();
+$app->boot();
+
+date_default_timezone_set($app['config']->get('timezone', 'UTC'));
+
+$app->execute();

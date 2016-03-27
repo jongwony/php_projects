@@ -1,0 +1,9 @@
+{
+  "name": "Wandu Festival",
+  "dependencies": {
+    "AdminLTE": "admin-lte#~2.3.2",
+    "font-awesome": "~4.5.0",
+    "jquery": "~2.2.0",
+    "bootstrap": "~3.3.6"
+  }
+}
